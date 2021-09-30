@@ -89,5 +89,4 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 
 ### Student-Net NextJS + MySQL Project (Production Environment)
 
-
-To be continued...
+Update the `docker-compose.prod.yml` file with the credentials and run `docker-compose -f docker-compose.prod.yml up -d` to access the production version of the site at `http://localhost/`, which then you can expose to the rest of the internet by forwarding ports 80/443 from your wifi router to the server that you run this command in.
