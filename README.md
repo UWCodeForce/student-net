@@ -77,6 +77,17 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 
    Now it is time to write some code! :sunglasses:
 
+
+#### (Optional) Peek into the sample container
+
+	```sh
+	docker run --rm -it aalekhpatel07/student-net:latest /bin/bash
+	```
+	Then `ls` (or `dir` for Windows) to see the contents of the container. This is where your code is run. The serving port of this container and your local host are connected (i.e. *bound*) virtually through `- ports` section in the `docker-compose.yml` file.
+
+	This allows you to make an HTTP request to the internal network of the docker container through `localhost:3000` of your host machine.
+
 ### Student-Net NextJS + MySQL Project (Production Environment)
+
 
 To be continued...
