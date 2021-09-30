@@ -26,6 +26,8 @@ Useful docker commands are available at the [`docker` CLI docs](https://docs.doc
 
 Once you have Docker, follow the instructions on the [Docker Compose docs page](https://docs.docker.com/compose/install/) to download and install `Docker Compose` for your system.
 
+Also, `docker-compose` is available through PyPi. You can download it by running `pip3 install docker-compose`.
+
 To check you've set it up correctly, run `docker-compose --version` and it should be one of the later versions, i.e. `^1.25`.
 
 **Some important docker-compose commands**
