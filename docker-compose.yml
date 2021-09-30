@@ -7,8 +7,8 @@ services:
     depends_on:
       - db
     volumes:
-      - /app/student-net/node_modules
-      - './web:/app/student-net/'
+      - /app/node_modules
+      - './web:/app/'
 
   db:
     image: "mysql"

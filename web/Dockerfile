@@ -2,7 +2,7 @@
 FROM node:14.18.0-slim as dev
 RUN apt-get update -y && apt-get upgrade -y
 
-WORKDIR /app/student-net
+WORKDIR /app
 
 ENV NODE_ENV=development
 ENV PORT=8080
