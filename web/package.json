@@ -19,11 +19,11 @@
     "NextJS",
     "UWinnipeg"
   ],
-  "author": "Aalekh Patel <aalekh.gwpeck.7998@icloud.com>",
+  "author": "UW Code Force <admin@uwcodeforce.ca>",
   "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://github.com/aalekhpatel07/student-net#readme",
+  "homepage": "https://github.com/UWCodeForce/student-net#readme",
   "bugs": {
-    "url": "https://github.com/aalekhpatel07/student-net/issues"
+    "url": "https://github.com/UWCodeForce/student-net/issues"
   },
   "dependencies": {
     "next": "11.1.2",
