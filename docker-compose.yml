@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build: ./web
+    image: student-net:latest
+    ports:
+      - "3000:8080" # Format - [Local:Container] (Example: If 3000 is taken use something else instead.)
+    depends_on:
+      - db
+    volumes:
+      - /app/student-net/node_modules
+      - './web:/app/student-net/'
+
+  db:
+    image: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: studentnet
+    ports:
+      - "3306:3306"
+

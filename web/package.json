@@ -1,0 +1,39 @@
+{
+  "name": "student-net",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A sample project setup for Student Net on the NextJS + MySQL stack.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UWCodeForce/student-net.git"
+  },
+  "keywords": [
+    "Student",
+    "Net",
+    "NextJS",
+    "UWinnipeg"
+  ],
+  "author": "Aalekh Patel <aalekh.gwpeck.7998@icloud.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/aalekhpatel07/student-net#readme",
+  "bugs": {
+    "url": "https://github.com/UWCodeForce/student-net/issues"
+  },
+  "dependencies": {
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.25",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "typescript": "4.4.3"
+  }
+}
