@@ -24,4 +24,4 @@ EXPOSE 8080
 HEALTHCHECK --interval=2m --timeout=3s --retries=100 --start-period=1m \
 	CMD curl -f http://localhost/ || exit 1
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "test"]
