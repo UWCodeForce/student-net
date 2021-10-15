@@ -1,5 +1,4 @@
-require('dotenv').config(); //Load from the .env file
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
 export const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -13,7 +12,6 @@ export const pool = mysql.createPool({
 export async function query(q, values) {
   try {
     const results = await pool.query(q, values)
-    await pool.end()
     return results
   } catch (e) {
     throw Error(e.message)

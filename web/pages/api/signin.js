@@ -12,7 +12,7 @@ const handler = nextConnect()
         try {
             const results = await query(`
               SELECT password FROM users WHERE email = ?
-            `, email)
+            `, [email])
 
             if (!results[0]) return res.status(401).json({ error: 'Email not found!' })
 
