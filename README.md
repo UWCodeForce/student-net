@@ -51,15 +51,25 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 
 2. Navigate to the directory: `cd student-net`
 
-3. Start the Docker containers
+3. Create a .env file instead of the `cd web` directory.
+   ```sh
+	DB_HOST=db
+	DB_USER=root
+	DB_PASS=root
+	DB_DATABASE=studentnet
+	DB_PORT=3306
+   ```
+   The host should be set to db if using the Docker compose. If running the services manually, use localhost instead.
+
+4. Start the Docker containers
 
 	```sh
 	docker-compose up -d
 	```
 	
-4. To **view the site** in the development mode, **navigate to `http://localhost:3000` **from a browser.
+5. To **view the site** in the development mode, **navigate to `http://localhost:3000` **from a browser.
 
-5. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.tsx` (or wherever really, as long as it is inside `./web`)  to see live changes on the page.
+6. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.tsx` (or wherever really, as long as it is inside `./web`)  to see live changes on the page.
 	
 	In fact, any changes you make to the files in `student-net/web/` will automatically trigger a re-render of the page from within your Docker container so you **don't have to start/stop any server or even refresh the page**. Sometimes, it may happen that you break some part of the app and save the file. For example, if you have `<di>Forgot a 'v' in 'div'. Oh no!</div>` in your code it will cause the app to break.
 	
@@ -73,9 +83,9 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 	```
 	This will keep your changes to the files but should you choose to discard them, it is as easy as running `git restore <file>` on files you don't want to keep the changes for. 
 
-6. Don't forget to keep committing your updates as you keep changing/adding new content to this NextJS app.
+7. Don't forget to keep committing your updates as you keep changing/adding new content to this NextJS app.
 
-7. Done! You've successfully set up the development environment for the Student Net project in a few simple steps.
+8. Done! You've successfully set up the development environment for the Student Net project in a few simple steps.
 
    Now it is time to write some code! :sunglasses:
 
