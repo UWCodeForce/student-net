@@ -3,6 +3,7 @@ import json
 
 from bs4 import BeautifulSoup
 
+## Extract HTML documentation into soup variable
 def extract(page):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36'}
     if (page == 1 or 0):
@@ -16,10 +17,11 @@ def extract(page):
     soup = BeautifulSoup(r.content, 'html.parser')
     return soup
 
+## Retrieve job information from soup and store in a list
 def getJobInfo(soup):
 
     allJobs = []
-    id = 0
+    ## id = 0
     
     a = soup.find_all('a', class_ = ('tapItem', 'fs-unmask'))
 
@@ -35,9 +37,9 @@ def getJobInfo(soup):
             hasSalary = None
         else:
             hasSalary = salary.text
-        id = id + 1
+      ## id = id + 1
         myJson = {
-            'Id':id,
+            ##'Id':id,
             'Title':title['title'].strip(),
             'Company':company,
             'Location':location,
@@ -50,16 +52,19 @@ def getJobInfo(soup):
         
     return allJobs
 
+## Retrieve and extract data
 def getJobs():
     for x in range(1):
         c = extract(x + 1)
         jobInfo = getJobInfo(c)
     return jobInfo
 
+## Writes data into json file
 def writeJson(data, filename="./web/resources/indeedJobs.json"):
     with open (filename, "w") as f:
         f.write(json.dumps(data, indent=4))
 
+## In order to update the jobs, we have to clear the old list
 def clearJson(filename="./web/resources/indeedJobs.json"):
     with open("./web/resources/indeedJobs.json", "r") as json_file:
         data = json.load(json_file)
