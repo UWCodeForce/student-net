@@ -1,6 +1,8 @@
 import nextConnect from 'next-connect'
 import bcrypt from 'bcrypt'
-import { query } from '../../utils/query'
+import { query } from '../../../utils/query'
+
+export const SALT_ROUNDS = 10;
 
 const handler = nextConnect()
 
@@ -19,7 +21,7 @@ const handler = nextConnect()
               - send validation link to email
           */
 
-            const hashedPW = await bcrypt.hash(password, 10)
+            const hashedPW = await bcrypt.hash(password, SALT_ROUNDS)
             const results = await query(`
               INSERT INTO users(email, password) VALUES(?, ?)   
             `, [email, hashedPW])

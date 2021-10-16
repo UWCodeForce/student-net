@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect'
 import bcrypt from 'bcrypt'
-import { query } from '../../utils/query'
+import { query } from '../../../utils/query'
 
 const handler = nextConnect()
 
@@ -14,9 +14,13 @@ const handler = nextConnect()
               SELECT password FROM users WHERE email = ?
             `, [email])
 
+            // will need to find a better way to do this in the future
+            // currently cannot directly parse the 'RowPacket' that mysql2 returns by using results[0].password
+            const hashedPW = JSON.parse(JSON.stringify(results[0][0].password))
+
             if (!results[0]) return res.status(401).json({ error: 'Email not found!' })
 
-            const valid = await bcrypt.compare(password, results[0].password)            
+            const valid = await bcrypt.compare(password, hashedPW)            
 
             if (valid) {  
               /*

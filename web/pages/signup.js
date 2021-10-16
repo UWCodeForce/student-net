@@ -23,7 +23,7 @@ export default function signup() {
             password: pass1,
         }
 
-        let res = await fetch('./api/signup', {
+        let res = await fetch('./api/auth/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
