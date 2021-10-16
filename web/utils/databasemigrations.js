@@ -27,7 +27,7 @@ module.exports = function(pool) {
         let statement = dbMigrations[index];
         if(alreadyRunScripts && alreadyRunScripts.includes(statement.scriptName)) { //if this script has already been run, try the next one if it exists
             if(index + 1 <= dbMigrations.length - 1) { //bounds check
-                migrateDbStep(index++, alreadyRunScripts);
+                migrateDbStep(++index, alreadyRunScripts);
             } else {
                 console.log("Done migrations!");
             }
@@ -38,7 +38,7 @@ module.exports = function(pool) {
                     if(err) throw err;
                     logScript(statement); //Insert record of this script running back into dbmigrations table
                     if(index + 1 <= dbMigrations.length - 1) {
-                        migrateDbStep(index++);
+                        migrateDbStep(++index);
                     } else {
                         console.log("Done migrations!");
                     }
