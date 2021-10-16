@@ -1,0 +1,90 @@
+.form, .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth {
+    gap: 2rem;
+    border-style: none;
+    padding: 3rem 3rem;
+    background-color: #fff;
+	border-radius: 1.5rem;
+  	box-shadow: 0 1rem 2rem rgba(0,0,0,0.25), 
+			0 0.75rem 0.75rem rgba(0,0,0,0.22);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.auth h1 { 
+    margin: 0;
+    pointer-events: none;
+}
+
+.auth p {
+    font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.auth input {
+    font-size: 14px;
+    background-color: #eee;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+.form {
+    font-size: 16px;
+    gap: 1rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.submit {
+    margin-top: 1rem;
+    border-radius: 1.25rem;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0.75rem 2.8125rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+    cursor: pointer;
+	transition: transform 80ms ease-in;
+}
+
+.submit:active {
+	transform: scale(0.95);
+}
+
+.submit:focus {
+	outline: none;
+}
+
+.submit:hover {
+    transform: scale(1.1);
+}
+
+.submit.ghost {
+	background-color: transparent;
+	border-color: #FFFFFF;
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    max-width: 75vw;
+    max-height: 50vh;
+    overflow: auto;
+  }
+
+  .auth input {
+    padding: 0.75rem;
+    max-width: 50vw;
+  }
+}
