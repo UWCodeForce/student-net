@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect'
 import bcrypt from 'bcrypt'
-import { query } from '../../../utils/query'
+import { query } from '../../../../utils/query'
 
 const handler = nextConnect()
 
