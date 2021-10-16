@@ -1,8 +1,7 @@
 import nextConnect from 'next-connect'
 import bcrypt from 'bcrypt'
 import { query } from '../../../utils/query'
-
-export const SALT_ROUNDS = 10;
+import { SALT_ROUNDS } from '../../../utils/systemconstants'
 
 const handler = nextConnect()
 
