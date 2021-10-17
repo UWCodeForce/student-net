@@ -15,8 +15,7 @@ app.prepare().then(() => {
     //if we want to manually handle any routes or add middleware, do it here
 
     require('./utils/databasemigrations')(pool); //Will automatically look for new SQL scripts and execute them in order
-    server.get('*', handleNextRequest);
-    server.post('*', handleNextRequest); 
+    server.all('*', handleNextRequest);
 
     //Start the server
     server.listen(process.env.PORT || 8080, (err) => {
