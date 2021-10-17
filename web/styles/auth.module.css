@@ -20,7 +20,6 @@
 
 .auth h1 { 
     margin: 0;
-    pointer-events: none;
 }
 
 .auth p {
@@ -35,7 +34,14 @@
     background-color: #eee;
     border: none;
     padding: 1rem 1.5rem;
+    transition: border-radius 150ms ease-in;
 }
+
+.auth input:focus {
+    border-radius: 2rem;
+}
+
+.auth input:focus::placeholder { color: transparent; } /* auto hide placeholder */
 
 .form {
     font-size: 16px;
@@ -45,10 +51,10 @@
 }
 
 .submit {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     border-radius: 1.25rem;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid lightcoral;
+	background-color: lightcoral;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -56,11 +62,7 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
     cursor: pointer;
-	transition: transform 80ms ease-in;
-}
-
-.submit:active {
-	transform: scale(0.95);
+	transition: transform 60ms ease-in;
 }
 
 .submit:focus {
@@ -69,11 +71,22 @@
 
 .submit:hover {
     transform: scale(1.1);
+    filter: drop-shadow(0 0.2rem 0.2rem rgba(0,0,0,0.22));
 }
 
-.submit.ghost {
-	background-color: transparent;
-	border-color: #FFFFFF;
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.links a {
+    cursor: pointer;
+}
+
+.links a:hover {
+    color: crimson;
 }
 
 @media only screen and (max-width: 600px) {
@@ -86,5 +99,13 @@
   .auth input {
     padding: 0.75rem;
     max-width: 50vw;
+  }
+
+  .submit {
+      margin-top: 0;
+  }
+
+  .auth {
+      gap: 1rem;
   }
 }
