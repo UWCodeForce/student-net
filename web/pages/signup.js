@@ -1,25 +1,28 @@
 import React, { useState } from 'react'
 import styles from '../styles/auth.module.css'
+import { useRouter } from 'next/router'
+import { validateSignUp } from '../utils/formvalidation'
 
 export default function signup() {
     const [response, setResponse] = useState()
+    const Router = useRouter()
     
     async function onSubmit(e) {
         e.preventDefault()
 
+        const email = e.currentTarget.email.value
         const pass1 = e.currentTarget.password1.value
         const pass2 = e.currentTarget.password2.value
 
-        if (pass1!==pass2) {
-            setResponse({ error: 'Passwords do not match!' })
+        const validationError = validateSignUp(email, pass1, pass2)
+
+        if (validationError) {
+            setResponse(validationError)
             return
-        } else if (!pass1 || !pass2) {
-            setResponse({ error: 'Please enter and confirm a password.' })
-            return
-        }
+        } 
 
         const body = {
-            email: e.currentTarget.email.value,
+            email: email,
             password: pass1,
         }
 
@@ -50,6 +53,10 @@ export default function signup() {
                 <input className={styles.field} type="password" name="password2" placeholder="Confirm Password"/>
                 <button className={styles.submit} type="submit">Sign Up</button>
             </form>
+
+            <div className={styles.links}>
+                <p>or <a onClick={() => Router.push('/signin')}>Sign In</a></p>
+            </div>
 
         </div>
     )

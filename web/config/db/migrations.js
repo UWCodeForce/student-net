@@ -28,6 +28,11 @@ const migrations = [
         scriptName: "add-effdate-indeedjobs",
         scriptDate: "2021-10-15",
         sql: "ALTER TABLE indeedjobs ADD COLUMN effectiveDate DATETIME DEFAULT CURRENT_TIMESTAMP, ADD COLUMN expirationDate DATETIME DEFAULT '2999-12-31';"
+    },
+    {
+        scriptName: "create-sessions-table",
+        scriptDate: "2021-10-18",
+        sql: "CREATE TABLE sessions(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, session_id VARCHAR(128) NOT NULL, session_expiry INT NOT NULL, session_data MEDIUMTEXT)"
     }
 ]
 

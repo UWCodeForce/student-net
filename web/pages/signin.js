@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/auth.module.css'
 import { useRouter } from 'next/router'
+import { validateSignIn } from '../utils/formvalidation'
 
 export default function signin() {
     const Router = useRouter()
@@ -9,9 +10,18 @@ export default function signin() {
     async function onSubmit(e) {
         e.preventDefault()
 
+        const email = e.currentTarget.email.value
+        const password = e.currentTarget.password.value
+
+        const validationError = validateSignIn(email, password)
+        if (validationError) {
+            setResponse(validationError)
+            return
+        }
+
         const body = {
-            email: e.currentTarget.email.value,
-            password: e.currentTarget.password.value,
+            email: email,
+            password: password,
         }
 
         let res = await fetch('./api/auth/signin', {
@@ -20,13 +30,8 @@ export default function signin() {
             body: JSON.stringify(body),
         })
 
-        if (res.status===200) {
-            // store session in cookie/localstorage/sessionstorage
-            Router.push('/')
-        } else {
-            res = await res.json()
-            setResponse(res)
-        }
+        res = await res.json()
+        setResponse(res)
     }
 
     return (
@@ -36,15 +41,19 @@ export default function signin() {
 
             {response && response.message && <p style={{color: "green"}}>{response.message}</p>}
             {response && response.error && <p style={{color: "red"}}>{response.error}</p>}
-
-            {/* could use Formik or another library in the future */}
-            <form className={styles.form} onSubmit={e => onSubmit(e)} >
-                <input className={styles.field} name="email" placeholder="Email"/>
-                <input className={styles.field} type="password" name="password" placeholder="Password"/>
-                <button className={styles.submit} type="submit">Sign In</button>
-            </form>
+ 
+                <form className={styles.form} onSubmit={e => onSubmit(e)} >
+                    <input className={styles.field} /* type="email" -> html5 email validation, probably not very secure */ 
+                    name="email" placeholder="Email"/>
+                    <input className={styles.field} type="password" name="password" placeholder="Password"/>
+                    <button className={styles.submit} type="submit">Sign In</button>
+                </form>
+            
+            <div className={styles.links}>
+                <a onClick={() => Router.push('/signup')}><p>Sign Up</p></a>
+                <a><p>Forgot Password</p></a>
+            </div>
 
         </div>
     )
 }
-
