@@ -7,10 +7,10 @@ const sessionStore = new MySQLStore({
   expiration: 3600, 
   createDatabaseTable: false, // probably should create it manually
   schema: {
-    tableName: 'sessions_test_1',
+    tableName: 'sessions',
     columnNames: {
         session_id: 'session_id',
-        expires: 'session_expires',
+        expires: 'session_expiry',
         data: 'session_data'
     }
   }
@@ -19,13 +19,13 @@ const sessionStore = new MySQLStore({
 const auth = nextConnect() 
     .use(session({
             name: "sid",
-            secret: process.env.SESSION_SECRET,
+            secret: process.env.SESSION_SECRET || 'keyboard cat',
             resave: false, // no need to store the session again everytime for every user
             saveUninitialized: false,
             cookie: {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                maxAge: 3600 // 1 hr, might want to add to serverconstants.js later
+                maxAge: 300 // 5 mins, might want to add to serverconstants.js later
             },
             store: sessionStore
         }))
