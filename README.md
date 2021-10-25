@@ -51,7 +51,7 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 
 2. Navigate to the directory: `cd student-net`
 
-3. Create a .env file instead of the `cd web` directory.
+3. Create a .env file inside of the `cd web` directory.
    ```sh
 	DB_HOST=db
 	DB_USER=root
@@ -69,7 +69,7 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 	
 5. To **view the site** in the development mode, **navigate to `http://localhost:3000` **from a browser.
 
-6. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.tsx` (or wherever really, as long as it is inside `./web`)  to see live changes on the page.
+6. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.js` (or wherever really, as long as it is inside `./web`)  to see live changes on the page.
 	
 	In fact, any changes you make to the files in `student-net/web/` will automatically trigger a re-render of the page from within your Docker container so you **don't have to start/stop any server or even refresh the page**. Sometimes, it may happen that you break some part of the app and save the file. For example, if you have `<di>Forgot a 'v' in 'div'. Oh no!</div>` in your code it will cause the app to break.
 	
