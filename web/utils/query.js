@@ -14,7 +14,7 @@ module.exports.pool = pool;
 module.exports.query = async function(q, values) {
   try {
     const results = await pool.query(q, values)
-    return results
+    return JSON.parse(JSON.stringify(results[0])) // this is needed to parse the RowPacket that mysql returns
   } catch (e) {
     throw Error(e.message)
   }
