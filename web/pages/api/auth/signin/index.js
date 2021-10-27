@@ -14,23 +14,21 @@ const handler = nextConnect()
               SELECT password, id FROM users WHERE email = ?
             `, [email])
 
-            if (results.length<1) res.status(401).json({ error: 'Email not found' })
+            if (results[0].length<1) res.status(401).json({ error: 'Email not found' })
+            else results = JSON.parse(JSON.stringify(results[0][0])) // this is needed to parse the RowPacket that mysql returns
 
-            const { password: hashedPW , id } = results[0] // get password as hashedPW from results[0]
+            const { password: hashedPW , id } = results
             
             const isValid = await bcrypt.compare(password, hashedPW)            
 
             if (!isValid) res.status(401).json({ error: 'Incorrect Password' })
 
             else if (isValid) {
-              const user = { uid: id, email: email }
 
               /**
                *  Do some stuff with sessions
                * 
                */
-
-              //res.session.userId = user
 
               res.status(200).json({ message: 'Success' })
             }
