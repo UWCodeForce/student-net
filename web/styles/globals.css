@@ -1,14 +1,40 @@
+/* css variables*/
+:root {
+  --primary-color: #fefae0;
+  --primary-color-light: #8E7474;
+  --accent-color: #FE6A6B;
+  --accent-color-light: #FFE4E4;
+  --accent-color-dark: #B94B4C;
+  --white-color: #FAFBFC;
+  --light-gray-color: #C6CBD1;
+  --medium-gray-color: #959DA5;
+  --dark-gray-color: #444D56; 
+  --bg-color: #F8F8FA;
+  --nav-color: #495057;
+  --code-bg-color: #F0E8E8;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #ced4da;
 }
 
-a {
-  color: inherit;
+nav {
+  background-color: var(--nav-color);
+}
+
+a, a:hover {
   text-decoration: none;
+  color: var(--primary-color);
+}
+
+/* menu */
+nav {
+  display: grid;
+  grid-template-columns: 175px auto;
 }
 
 * {

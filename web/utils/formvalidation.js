@@ -4,13 +4,13 @@
 
 export const validateSignUp = (email, pass1, pass2) => {
     if (!email && (!pass1 || !pass2)) {
-        return { error: 'Enter an Email and Password to continue.' }
+        return { error: 'Enter an Email and Password' }
     } else if (!pass1 || !pass2) {
-        return { error: 'Please enter and confirm a Password.' }
+        return { error: 'Please enter and confirm a Password' }
     } else if (!email) {
-        return { error: 'Enter an Email to continue.' }
+        return { error: 'Enter an Email' }
     } else if (pass1!==pass2) {
-        return { error: 'Passwords do not match.' }
+        return { error: 'Passwords do not match' }
     /*} else if (!validateEmail(email)) {
         return { error: 'Enter a valid Email.' }*/
     } else return false
@@ -18,9 +18,9 @@ export const validateSignUp = (email, pass1, pass2) => {
 
 export const validateSignIn = (email, pass) => {
     if (!email && !pass) {
-        return { error: 'Enter your Email and Password.' }
+        return { error: 'Enter your Email and Password' }
     } else if (!email) {
-        return { error: 'Enter your account Email.' }
+        return { error: 'Enter your account Email' }
     } else if (!pass) {
         return { error: 'Enter your account Password' }
     /*} else if (!validateEmail(email)) {
