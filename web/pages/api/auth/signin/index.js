@@ -10,7 +10,7 @@ const handler = nextConnect()
         if (!email || !password) res.status(400).json({ error: 'Email or Password cannot be blank' })
 
         try {
-            const results = await query(`
+            var results = await query(`
               SELECT password, id FROM users WHERE email = ?
             `, [email])
 
