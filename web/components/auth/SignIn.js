@@ -49,41 +49,36 @@ export default function SignIn() {
     return (
         <Flex height="100vh" alignItems="center" justifyContent="Center" backgroundColor="gray.700">
 
-            {response && response.message && 
-            <Box className={styles.alert} style={{backgroundColor: "green"}}>
-                <p>{response.message}</p>
-            </Box>}
+            <form onSubmit={e => onSubmit(e)}>
+                <Flex direction="column" background="gray.100" p={12} rounded={6}>
+                    <Heading>Sign In</Heading>
 
-            {response && response.error && 
-            <Box >
-                <p>{response.error}</p>
-            </Box>}
- 
-            <Flex direction="column" background="gray.100" p={12} rounded={6} onSubmit={e => onSubmit(e)}>
-                <Heading>Sign In</Heading>
-                <span>&nbsp;</span>
-                <Box>
-                    <Input /* type="email" -> html5 email validation, probably not very secure */ 
-                    name="email" placeholder="Email"/>
-                </Box>
-                <Box className={styles.field}>
-                    <Input type="password" name="password" placeholder="Password"/>
-                </Box>
-                <Button type="submit">Sign In</Button>
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Box className={styles.links}>
-                <Box><a onClick={() => Router.push('/signup')}>Sign Up</a></Box>
-                <Box><a>Forgot Password</a></Box>
-                </Box>
-            </Flex>
-            
+                    {response && response.message && 
+                    <Box className={styles.alert} style={{backgroundColor: "green"}}>
+                        <p>{response.message}</p>
+                    </Box>}
+
+                    {response && response.error && 
+                    <Box >
+                        <p>{response.error}</p>
+                    </Box>}
+
+                    <span>&nbsp;</span>
+                    <Box>
+                        <Input /* type="email" -> html5 email validation, probably not very secure */ 
+                        name="email" placeholder="Email"/>
+                    </Box>
+                    <Box className={styles.field}>
+                        <Input type="password" name="password" placeholder="Password"/>
+                    </Box>
+                    <Button type="submit">Sign In</Button>
+                    <span>&nbsp;</span>
+                    <Box className={styles.links}>
+                    <Box><a onClick={() => Router.push('/signup')}>Sign Up</a></Box>
+                    <Box><a>Forgot Password</a></Box>
+                    </Box>
+                </Flex>
+            </form>
         </Flex>
     )
 }

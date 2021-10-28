@@ -47,41 +47,38 @@ export default function SignUp() {
     return (
         <Flex height="100vh" alignItems="center" justifyContent="Center" backgroundColor="gray.700"> {/* hacky way to add multiple classes */}
 
-            {response && response.message && 
-            <Box>
-                <p>{response.message}</p>
-            </Box>}
-
-            {response && response.error && 
-            <Box>
-                <p>{response.error}</p>
-            </Box>}
-
             {/* could use Formik or another library in the future */}
-            <Flex direction="column" background="gray.100" p={12} rounded={6} onSubmit={e => onSubmit(e)}>
-                <Heading mb={6}>Sign Up</Heading>
-                <Box>    
-                    <Input name="email" placeholder="Email"/>
-                </Box>
-                <Box>
-                    <Input type="password" name="password1" placeholder="Password"/>
-                </Box>
-                <Box>
-                    <Input type="password" name="password2" placeholder="Confirm Password"/>
-                </Box>
-                <Button type="submit">Sign Up</Button>
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Divider />
-                <Box className={styles.links}>
-                <Box>or <a onClick={() => Router.push('/signin')}>Sign In</a></Box>
-                </Box>
-            </Flex>
+            <form onSubmit={e => onSubmit(e)}>
+                <Flex direction="column" background="gray.100" p={12} rounded={6}>
+
+                    <Heading mb={6}>Sign Up</Heading>
+
+                    {response && response.message && 
+                    <Box>
+                        <p>{response.message}</p>
+                    </Box>}
+
+                    {response && response.error && 
+                    <Box>
+                        <p>{response.error}</p>
+                    </Box>}
+
+                    <Box>    
+                        <Input name="email" placeholder="Email"/>
+                    </Box>
+                    <Box>
+                        <Input type="password" name="password1" placeholder="Password"/>
+                    </Box>
+                    <Box>
+                        <Input type="password" name="password2" placeholder="Confirm Password"/>
+                    </Box>
+                    <Button type="submit">Sign Up</Button>
+                    <span>&nbsp;</span>
+                    <Box className={styles.links}>
+                    <Box>or <a onClick={() => Router.push('/signin')}>Sign In</a></Box>
+                    </Box>
+                </Flex>
+            </form>
         </Flex>
     )
 }
