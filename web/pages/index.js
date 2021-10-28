@@ -16,8 +16,8 @@ import {
   useColorModeValue,
   Stack,
 } from '@chakra-ui/react';
-import HamburgerIcon from '@chakra-ui/icons';
-import CloseIcon from '@chakra-ui/icons';
+import HamburgerIcon from '@chakra-ui/icon';
+import CloseIcon from '@chakra-ui/icon';
 
 const Links = ['Home', 'Forum', 'Courses', 'Jobs', 'Housing', 'RateMyProfessor'];
 
