@@ -31,6 +31,7 @@
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "bcrypt": "5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-mysql-session": "^2.1.7",
