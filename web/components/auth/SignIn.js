@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 import { validateSignIn } from '../../utils/formvalidation'
 import styles from '../../styles/auth.module.css'
+import { 
+    Input,
+    Box,
+    Flex,
+    Button,
+    Heading,
+    Divider
+} from "@chakra-ui/react"
 
 export default function SignIn() {
     const Router = useRouter()
@@ -39,36 +47,43 @@ export default function SignIn() {
     }
 
     return (
-        <div className={[styles.auth, "noselect"].join(' ')}>
-
-            <h1>Sign In</h1>
+        <Flex height="100vh" alignItems="center" justifyContent="Center" backgroundColor="gray.700">
 
             {response && response.message && 
-            <div className={styles.alert} style={{backgroundColor: "green"}}>
+            <Box className={styles.alert} style={{backgroundColor: "green"}}>
                 <p>{response.message}</p>
-            </div>}
+            </Box>}
 
             {response && response.error && 
-            <div className={styles.alert} style={{backgroundColor: "red"}}>
+            <Box >
                 <p>{response.error}</p>
-            </div>}
+            </Box>}
  
-            <form className={styles.form} onSubmit={e => onSubmit(e)} >
-                <div className={styles.field}>
-                    <input /* type="email" -> html5 email validation, probably not very secure */ 
+            <Flex direction="column" background="gray.100" p={12} rounded={6} onSubmit={e => onSubmit(e)}>
+                <Heading>Sign In</Heading>
+                <span>&nbsp;</span>
+                <Box>
+                    <Input /* type="email" -> html5 email validation, probably not very secure */ 
                     name="email" placeholder="Email"/>
-                </div>
-                <div className={styles.field}>
-                    <input className={styles.field} type="password" name="password" placeholder="Password"/>
-                </div>
-                <button className={styles.submit} type="submit">Sign In</button>
-            </form>
-
-            <div className={styles.links}>
-                <a onClick={() => Router.push('/signup')}><p>Sign Up</p></a>
-                <a><p>Forgot Password</p></a>
-            </div>
+                </Box>
+                <Box className={styles.field}>
+                    <Input type="password" name="password" placeholder="Password"/>
+                </Box>
+                <Button type="submit">Sign In</Button>
+                <Divider />
+                <Divider />
+                <Divider />
+                <Divider />
+                <Divider />
+                <Divider />
+                <Divider />
+                <Divider />
+                <Box className={styles.links}>
+                <Box><a onClick={() => Router.push('/signup')}>Sign Up</a></Box>
+                <Box><a>Forgot Password</a></Box>
+                </Box>
+            </Flex>
             
-        </div>
+        </Flex>
     )
 }
