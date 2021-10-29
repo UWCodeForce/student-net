@@ -57,7 +57,7 @@ export default function withAction() {
               display={{ base: 'none', md: 'flex' }}
               bgColor={'gray.100'}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Button key={link}>{link}</Button>
               ))}
             </HStack>
           </HStack>

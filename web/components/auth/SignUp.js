@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import styles from '../../styles/auth.module.css'
 import { useRouter } from 'next/router'
 import { validateSignUp } from '../../utils/formvalidation'
+import { 
+    Input,
+    Box,
+    Flex,
+    Button,
+    Heading,
+    Divider
+} from "@chakra-ui/react"
 
 export default function SignUp() {
     const [response, setResponse] = useState()
@@ -37,38 +45,40 @@ export default function SignUp() {
     }
     
     return (
-        <div className={[styles.auth, "noselect"].join(' ')}> {/* hacky way to add multiple classes */}
-        
-            <h1>Sign Up</h1>
-
-            {response && response.message && 
-            <div className={styles.alert} style={{backgroundColor: "green"}}>
-                <p>{response.message}</p>
-            </div>}
-
-            {response && response.error && 
-            <div className={styles.alert} style={{backgroundColor: "red"}}>
-                <p>{response.error}</p>
-            </div>}
+        <Flex height="100vh" alignItems="center" justifyContent="Center" backgroundColor="gray.700"> {/* hacky way to add multiple classes */}
 
             {/* could use Formik or another library in the future */}
-            <form className={styles.form} onSubmit={e => onSubmit(e)}>
-                <div className={styles.field}>    
-                    <input name="email" placeholder="Email"/>
-                </div>
-                <div className={styles.field}>
-                    <input className={styles.field} type="password" name="password1" placeholder="Password"/>
-                </div>
-                <div className={styles.field}>
-                    <input className={styles.field} type="password" name="password2" placeholder="Confirm Password"/>
-                </div>
-                <button className={styles.submit} type="submit">Sign Up</button>
+            <form onSubmit={e => onSubmit(e)}>
+                <Flex direction="column" background="gray.100" p={12} rounded={6}>
+
+                    <Heading mb={6}>Sign Up</Heading>
+
+                    {response && response.message && 
+                    <Box>
+                        <p>{response.message}</p>
+                    </Box>}
+
+                    {response && response.error && 
+                    <Box>
+                        <p>{response.error}</p>
+                    </Box>}
+
+                    <Box>    
+                        <Input name="email" placeholder="Email"/>
+                    </Box>
+                    <Box>
+                        <Input type="password" name="password1" placeholder="Password"/>
+                    </Box>
+                    <Box>
+                        <Input type="password" name="password2" placeholder="Confirm Password"/>
+                    </Box>
+                    <Button type="submit">Sign Up</Button>
+                    <span>&nbsp;</span>
+                    <Box className={styles.links}>
+                    <Box>or <a onClick={() => Router.push('/signin')}>Sign In</a></Box>
+                    </Box>
+                </Flex>
             </form>
-
-            <div className={styles.links}>
-                <p>or <a onClick={() => Router.push('/signin')}>Sign In</a></p>
-            </div>
-
-        </div>
+        </Flex>
     )
 }
