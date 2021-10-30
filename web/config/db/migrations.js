@@ -33,6 +33,11 @@ const migrations = [
         scriptName: "create-sessions-table",
         scriptDate: "2021-10-18",
         sql: "CREATE TABLE sessions(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, session_id VARCHAR(128) NOT NULL, session_expiry INT NOT NULL, session_data MEDIUMTEXT)"
+    },
+    {
+        scriptName: "alter-indeed-table",
+        scriptDate: "2021-10-30",
+        sql: "ALTER TABLE indeedjobs MODIFY COLUMN title VARCHAR(100), MODIFY COLUMN company VARCHAR(100);"
     }
 ]
 
