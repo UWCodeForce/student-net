@@ -1,7 +1,6 @@
 import nextConnect from 'next-connect'
 import bcrypt from 'bcrypt'
 import { query } from '../../../../utils/query'
-import passport from 'passport'
 
 const handler = nextConnect()
 
@@ -38,13 +37,5 @@ const handler = nextConnect()
             res.status(500).json({ error: e.message })
           }
     }) 
-
-passport.serializeUser(function(user, done) {
-  done(null, user)
-})
-
-passport.deserializeUser(function(user, done) {
-  done(null, user)
-})
 
 export default handler

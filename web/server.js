@@ -7,8 +7,16 @@ const app = next({dev}); //Create the next.js server
 const handleNextRequest = app.getRequestHandler(); //We need to get the next.js request handler so any routes we don't handle manually
                                                     //will be handled by Next.JS
 const {pool} = require('./utils/query')
-const passport = require('passport')
 const auth = require('./middleware/auth')
+const passport = require('passport')
+
+passport.serializeUser(function(user, done) {
+  done(null, user)
+})
+
+passport.deserializeUser(function(user, done) {
+  done(null, user)
+})
 
 app.prepare().then(() => {
     const server = express();
