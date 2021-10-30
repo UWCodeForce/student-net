@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import styles from '../../styles/auth.module.css'
 import { useRouter } from 'next/router'
-import { validateSignUp } from '../../utils/formvalidation'
 import { 
     Input,
     Flex,
@@ -29,12 +27,12 @@ export default function SignUp() {
         const pass1 = e.currentTarget.password1.value
         const pass2 = e.currentTarget.password2.value
 
-        const validationError = validateSignUp(email, pass1, pass2)
-
-        if (validationError) {
-            setResponse(validationError)
+        const doPasswordsMatch = pass1 === pass2
+        
+        if (!doPasswordsMatch) {
+            setResponse({ error: 'Passwords do not match' })
             return
-        } 
+        }
 
         const body = {
             email: email,
@@ -57,7 +55,7 @@ export default function SignUp() {
                     <Heading>Sign Up</Heading>
                     
                     {response && response.message && 
-                    <Alert status="success" rounded="1.5rem" p="0.75rem 1rem" justify="center" align="center" width="fit-content">
+                    <Alert status="success" rounded="1.5rem" p="0.75rem 1rem" justify="center" align="center" width="fit-content" maxWidth="100%">
                         <AlertIcon/>
                         <AlertDescription>{response.message}</AlertDescription>
                     </Alert>}

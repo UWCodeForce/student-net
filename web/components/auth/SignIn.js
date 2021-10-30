@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { validateSignIn } from '../../utils/formvalidation'
 import { 
     Input,
     InputGroup,
@@ -25,18 +24,9 @@ export default function SignIn() {
     async function onSubmit(e) {
         e.preventDefault()
 
-        const email = e.currentTarget.email.value
-        const password = e.currentTarget.password.value
-
-        const validationError = validateSignIn(email, password)
-        if (validationError) {
-            setResponse(validationError)
-            return
-        }
-
         const body = {
-            email: email,
-            password: password,
+            email: e.currentTarget.email.value,
+            password: e.currentTarget.password.value,
         }
 
         let res = await fetch('./api/auth/signin', {
@@ -46,15 +36,8 @@ export default function SignIn() {
             body: JSON.stringify(body),
         })
 
-        if (res.status===200) {
-            res = await res.json()
-            setResponse(res)
-        }
-
-        else { 
-            res = await res.json()
-            setResponse(res)
-        }
+        res = await res.json()
+        setResponse(res)
     }
 
     return (
@@ -63,7 +46,7 @@ export default function SignIn() {
                     <Heading>Sign In</Heading>
 
                     {response && response.message && 
-                    <Alert status="success" rounded="1.5rem" p="0.75rem 1rem" justify="center" align="center" width="fit-content">
+                    <Alert status="success" rounded="1.5rem" p="0.75rem 1rem" justify="center" align="center" width="fit-content" maxWidth="100%">
                         <AlertIcon/>
                         <AlertDescription>{response.message}</AlertDescription>
                     </Alert>}
