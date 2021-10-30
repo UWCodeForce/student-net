@@ -1,4 +1,3 @@
-const nextConnect = require('next-connect')
 const { pool } = require('../utils/query')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')(session)
@@ -16,18 +15,17 @@ const sessionStore = new MySQLStore({
   }
 }, pool)
 
-const auth = nextConnect() 
-    .use(session({
+const auth = session({
             name: "sid",
             secret: process.env.SESSION_SECRET || 'keyboard cat',
-            resave: false, // no need to store the session again everytime for every user
+            resave: false,
             saveUninitialized: false,
             cookie: {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                maxAge: 300 // 5 mins, might want to add to serverconstants.js later
+                secure: false,
+                maxAge: 300 
             },
             store: sessionStore
-        }))
+            })
 
-export default auth
+module.exports = auth
