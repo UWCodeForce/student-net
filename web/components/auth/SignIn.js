@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
+import CustomInputField from './CustomInputField'
 import { 
-    Input,
-    InputGroup,
-    InputRightElement,
     Flex,
     VStack,
     Button,
     Heading,
-    FormControl,
-    FormLabel,
     Alert,
     AlertIcon,
     AlertDescription,
@@ -17,16 +15,31 @@ import {
     Box
 } from "@chakra-ui/react"
 
+const initialValues = {
+    email: '',
+    password: ''
+}
+
+const validationSchema = Yup.object().shape({
+    email: Yup
+            .string()
+            .required('Required')
+            // .email('Invalid Email') disabled for debugging and testing
+            ,
+    password: Yup
+                .string()
+                .required('Required')
+                ,
+})
+
 export default function SignIn() {
     const Router = useRouter()
     const [response, setResponse] = useState()
 
-    async function onSubmit(e) {
-        e.preventDefault()
-
+    async function onSignIn(values) {
         const body = {
-            email: e.currentTarget.email.value,
-            password: e.currentTarget.password.value,
+            email: values.email,
+            password: values.password,
         }
 
         let res = await fetch('./api/auth/signin', {
@@ -56,22 +69,27 @@ export default function SignIn() {
                         <AlertIcon/>
                         <AlertDescription>{response.error}</AlertDescription>
                     </Alert>}
-                    
-                    <form onSubmit={e => onSubmit(e)}>
-                        <VStack justify="center" align="center" spacing="0.5rem">
-                            <FormControl isRequired>
-                                <FormLabel>Email</FormLabel>
-                                <Input name="email"/>
-                            </FormControl>
-                            <FormControl isRequired>
-                                <FormLabel>Password</FormLabel>
-                                <PasswordInput name="password" />
-                            </FormControl>
-                            <Box>
-                                <Button mt="1rem" colorScheme="red" type="submit">Sign In</Button>
+
+                    <Formik 
+                        initialValues={initialValues} 
+                        validationSchema={validationSchema}
+                        onSubmit={async (values, actions) => {
+                            await onSignIn(values)
+                            actions.setSubmitting(false)
+                        }} >
+
+                    {({ errors, touched, isSubmitting, isValid }) => (
+                    <Form>
+                        <VStack justify="center" align="flex-start" spacing="0.5rem">
+                            <CustomInputField name="email" label="Email" error={errors.email} touched={touched.email} />
+                            <CustomInputField name="password" type="password" label="Password" error={errors.password} touched={touched.password} /> 
+                            <Box w="100%" align="center">
+                                <Button disabled={!isValid} isLoading={isSubmitting} mt="0.5rem" colorScheme="red" type="submit">Sign In</Button>
                             </Box>
                         </VStack>
-                    </form>
+                    </Form>
+                    )}
+                    </Formik>
 
                     <Flex justify="space-between" width="100%" direction="row"> 
                         <p><Link style={{textDecoration: 'inherit'}} onClick={() => Router.push('/signup')}>Sign Up</Link></p>
@@ -80,23 +98,4 @@ export default function SignIn() {
                 </VStack>
         </Flex>
     )
-}
-
-function PasswordInput({ name }) {
-  const [show, setShow] = React.useState(false)
-  const handleClick = () => setShow(!show)
-
-  return (
-    <InputGroup>
-      <Input
-        type={show ? "text" : "password"}
-        name={name}
-      />
-      <InputRightElement width="4.5rem">
-        <Button h="75%" size="sm" onClick={handleClick}>
-          {show ? "Hide" : "Show"}
-        </Button>
-      </InputRightElement>
-    </InputGroup>
-  )
 }

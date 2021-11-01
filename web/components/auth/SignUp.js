@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
+import CustomInputField from './CustomInputField'
 import { 
-    Input,
     Flex,
     VStack,
     Button,
     Heading,
-    FormControl,
-    FormLabel,
     Alert,
     AlertIcon,
     AlertDescription,
@@ -16,27 +16,35 @@ import {
     Link
 } from "@chakra-ui/react"
 
+const initialValues = {
+    email: '',
+    password: '',
+    confirmPassword: ''
+}
+
+const validationSchema = Yup.object().shape({
+    email:  Yup.string()
+                //.email('Invalid email') disabled for debugging and testing
+                .required('Required'),
+    password: Yup.string()
+                .min(6,'Too short')
+                .max(20,'Too long')
+                .required('Required'),
+    confirmPassword: Yup.string()
+                        .oneOf([Yup.ref('password')], 'Must match password')
+                        .min(6,'Too short')
+                        .max(30,'Too long')
+                        .required('Required')
+})
+
 export default function SignUp() {
     const [response, setResponse] = useState()
     const Router = useRouter()
     
-    async function onSubmit(e) {
-        e.preventDefault()
-
-        const email = e.currentTarget.email.value
-        const pass1 = e.currentTarget.password1.value
-        const pass2 = e.currentTarget.password2.value
-
-        const doPasswordsMatch = pass1 === pass2
-        
-        if (!doPasswordsMatch) {
-            setResponse({ error: 'Passwords do not match' })
-            return
-        }
-
+    async function onSignUp(values) {
         const body = {
-            email: email,
-            password: pass1,
+            email: values.email,
+            password: values.confirmPassword, // confirm password will only be sent to this method if it matches with password
         }
 
         let res = await fetch('./api/auth/signup', {
@@ -66,25 +74,27 @@ export default function SignUp() {
                         <AlertDescription>{response.error}</AlertDescription>
                     </Alert>}
 
-                    <form onSubmit={e => onSubmit(e)}>
-                        <VStack justify="center" align="center" spacing="0.5rem">
-                            <FormControl isRequired>
-                                <FormLabel>Email</FormLabel>
-                                <Input name="email"/>
-                            </FormControl>
-                            <FormControl isRequired>
-                                <FormLabel>Password</FormLabel>
-                                <Input type="password" name="password1" />
-                            </FormControl>
-                            <FormControl isRequired>
-                                <FormLabel>Confirm Password</FormLabel>
-                                <Input type="password" name="password2" />
-                            </FormControl>
-                            <Box>
-                                <Button mt="0.5rem" colorScheme="red" type="submit">Sign Up</Button>
+                    <Formik 
+                        initialValues={initialValues} 
+                        validationSchema={validationSchema}
+                        onSubmit={async (values, actions) => {
+                            await onSignUp(values)
+                            actions.setSubmitting(false)
+                        }} >
+
+                    {({ errors, touched, isSubmitting, isValid }) => (
+                    <Form>
+                        <VStack justify="center" align="flex-start" spacing="0.5rem">
+                            <CustomInputField name="email" label="Email" error={errors.email} touched={touched.email} />
+                            <CustomInputField name="password" type="password" label="Password" error={errors.password} touched={touched.password} />
+                            <CustomInputField name="confirmPassword" type="password" label="Confirm Password" error={errors.confirmPassword} touched={touched.confirmPassword} /> 
+                            <Box w="100%" align="center">
+                                <Button disabled={!isValid} isLoading={isSubmitting} mt="0.5rem" colorScheme="red" type="submit">Sign Up</Button>
                             </Box>
                         </VStack>
-                    </form>
+                    </Form>
+                    )}
+                    </Formik>
 
                     <HStack spacing="0.5rem" justify="center" >
                         <p>Or <Link style={{textDecoration: 'inherit'}} onClick={() => Router.push('/signin')}>Sign In</Link></p>
