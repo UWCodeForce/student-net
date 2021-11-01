@@ -24,7 +24,7 @@ const handler = nextConnect()
             if (!isValid) res.status(401).json({ error: 'Incorrect Password' })
 
             else if (isValid) {
-              const user = { uid: id, email: email }
+              const user = { id: id, email: email }
               req.session.user = user
               req.login(user, function(err) {
                 res.status(200).json({ message: 'Session created' })

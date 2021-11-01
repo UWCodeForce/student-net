@@ -1,4 +1,4 @@
-const { pool } = require('../utils/query')
+const { pool, query } = require('./query')
 const session = require('express-session')
 const MySQLStore = require('express-mysql-session')(session)
 
@@ -28,4 +28,16 @@ const auth = session({
             store: sessionStore
             })
 
-module.exports = auth
+const getUserById = (id) => {
+  var results = await query(`
+    SELECT email FROM users WHERE id = ?
+  `, [id])
+
+  if (results[0].length<1) return null
+  const { email } = JSON.parse(JSON.stringify(results[0][0]))
+  const user = { id: id, email: email }
+
+  return user
+}
+
+module.exports = { auth, getUserById }
