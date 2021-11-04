@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
   server:
     build:
-        context: ./web
-        dockerfile: prod.Dockerfile
+      context: ./web
+      dockerfile: prod.Dockerfile
     image: student-net:prod
     ports:
       - "80:3000" # (Usually we expose port 80 to the rest of the internet.)

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   app:
     build: ./web
@@ -7,8 +7,8 @@ services:
     depends_on:
       - db
     volumes:
-      - '/app/node_modules'
-      - './web:/app'
+      - "/app/node_modules"
+      - "./web:/app"
 
   db:
     image: "mysql"
@@ -19,4 +19,3 @@ services:
       - ./db:/var/lib/mysql
     ports:
       - "3306:3306"
-

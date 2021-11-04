@@ -1,6 +1,6 @@
 # Student Net
 
-Some description goes here.
+A student net for students of The University of Winnipeg.
 
 ## Setup
 
@@ -32,72 +32,75 @@ To check you've set it up correctly, run `docker-compose --version` and it shoul
 
 **Some important docker-compose commands**
 
-- `docker-compose up -d`: Starts the services (as a *daemon*, aka in the background) described in the `docker-compose.yml` file located in the same directory.
-- `docker-compose down`: Stops the services described in the `docker-compose.yml` file located in the same directory.
-- `docker-compose ps`: Lists the services that exist currently. Note that it shows all services regardless of whether it is dead or alive.
-- `docker-compose logs -f --tail 10 <service>`: Streams the 10 recent-most lines of logs of a particular service. This is very helpful for debugging when some of your services die (terminate) unexpectedly. Note that if you `<Ctrl-C>` to exit the log stream it will **not** stop the services, rather only the logs.
-- `docker-compose restart <service>`: Restart a given service. Helpful if some service just died and you want to try breathing life into it.
-- `docker-compose build <service>`: Builds a given service as described by the context Dockerfile from the description of the service in the `docker-compose.yml`
+-   `docker-compose up -d`: Starts the services (as a _daemon_, aka in the background) described in the `docker-compose.yml` file located in the same directory.
+-   `docker-compose down`: Stops the services described in the `docker-compose.yml` file located in the same directory.
+-   `docker-compose ps`: Lists the services that exist currently. Note that it shows all services regardless of whether it is dead or alive.
+-   `docker-compose logs -f --tail 10 <service>`: Streams the 10 recent-most lines of logs of a particular service. This is very helpful for debugging when some of your services die (terminate) unexpectedly. Note that if you `<Ctrl-C>` to exit the log stream it will **not** stop the services, rather only the logs.
+-   `docker-compose restart <service>`: Restart a given service. Helpful if some service just died and you want to try breathing life into it.
+-   `docker-compose build <service>`: Builds a given service as described by the context Dockerfile from the description of the service in the `docker-compose.yml`
 
-- More commands available in the [`docker-compose` CLI docs](https://docs.docker.com/compose/reference/).
+-   More commands available in the [`docker-compose` CLI docs](https://docs.docker.com/compose/reference/).
 
 ### Student-Net NextJS + MySQL Project (Development Environment)
 
 1. Clone this repository.
 
-  ```sh
-  git clone https://github.com/UWCodeForce/student-net.git
-  ```
+```sh
+git clone https://github.com/UWCodeForce/student-net.git
+```
 
 2. Navigate to the directory: `cd student-net`
 
 3. Create a .env file inside of the `cd web` directory.
-   ```sh
-	DB_HOST=db
-	DB_USER=root
-	DB_PASS=root
-	DB_DATABASE=studentnet
-	DB_PORT=3306
-   ```
-   The host should be set to db if using the Docker compose. If running the services manually, use localhost instead.
+
+    ```sh
+    DB_HOST=db
+    DB_USER=root
+    DB_PASS=root
+    DB_DATABASE=studentnet
+    DB_PORT=3306
+    ```
+
+    The host should be set to db if using the Docker compose. If running the services manually, use localhost instead.
 
 4. Start the Docker containers
 
-	```sh
-	docker-compose up -d
-	```
-	
+    ```sh
+    docker-compose up -d
+    ```
+
 5. To **view the site** in the development mode, **navigate to `http://localhost:3000` **from a browser.
 
-6. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.js` (or wherever really, as long as it is inside `./web`)  to see live changes on the page.
-	
-	In fact, any changes you make to the files in `student-net/web/` will automatically trigger a re-render of the page from within your Docker container so you **don't have to start/stop any server or even refresh the page**. Sometimes, it may happen that you break some part of the app and save the file. For example, if you have `<di>Forgot a 'v' in 'div'. Oh no!</div>` in your code it will cause the app to break.
-	
-	In such a scenario, just **correct the file and reload** the page. This should fix the error and start the live-reloaded page should start working like previously.
+6. Try changing some of the HTML/CSS/JS content in `./web/pages/_app.js` (or wherever really, as long as it is inside `./web`) to see live changes on the page.
 
-	**Note**: When you wish to take a break from working on this project, you **don't have to shut down any servers** either.
+    In fact, any changes you make to the files in `student-net/web/` will automatically trigger a re-render of the page from within your Docker container so you **don't have to start/stop any server or even refresh the page**. Sometimes, it may happen that you break some part of the app and save the file. For example, if you have `<di>Forgot a 'v' in 'div'. Oh no!</div>` in your code it will cause the app to break.
 
-	To shut down all the services, just run:
-	```sh
-	docker-compose down
-	```
-	This will keep your changes to the files but should you choose to discard them, it is as easy as running `git restore <file>` on files you don't want to keep the changes for. 
+    In such a scenario, just **correct the file and reload** the page. This should fix the error and start the live-reloaded page should start working like previously.
+
+    **Note**: When you wish to take a break from working on this project, you **don't have to shut down any servers** either.
+
+    To shut down all the services, just run:
+
+    ```sh
+    docker-compose down
+    ```
+
+    This will keep your changes to the files but should you choose to discard them, it is as easy as running `git restore <file>` on files you don't want to keep the changes for.
 
 7. Don't forget to keep committing your updates as you keep changing/adding new content to this NextJS app.
 
 8. Done! You've successfully set up the development environment for the Student Net project in a few simple steps.
 
-   Now it is time to write some code! :sunglasses:
-
+    Now it is time to write some code! :sunglasses:
 
 #### (Optional) Peek into the sample container
 
-	```sh
-	docker run --rm -it aalekhpatel07/student-net:js /bin/bash
-	```
-	Then `ls` (or `dir` for Windows) to see the contents of the container. This is where your code is run. The serving port of this container and your local host are connected (i.e. *bound*) virtually through `- ports` section in the `docker-compose.yml` file.
+    ```sh
+    docker run --rm -it aalekhpatel07/student-net:js /bin/bash
+    ```
+    Then `ls` (or `dir` for Windows) to see the contents of the container. This is where your code is run. The serving port of this container and your local host are connected (i.e. *bound*) virtually through `- ports` section in the `docker-compose.yml` file.
 
-	This allows you to make an HTTP request to the internal network of the docker container through `localhost:3000` of your host machine.
+    This allows you to make an HTTP request to the internal network of the docker container through `localhost:3000` of your host machine.
 
 ### Student-Net NextJS + MySQL Project (Production Environment)
 
