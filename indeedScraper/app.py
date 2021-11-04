@@ -1,5 +1,6 @@
 import requests
 import json
+import mysql.connector
 
 from bs4 import BeautifulSoup
 
@@ -38,57 +39,50 @@ def getJobInfo(soup):
         else:
             hasSalary = salary.text
       ## id = id + 1
-        myJson = {
-            ##'Id':id,
-            'Title':title['title'].strip(),
-            'Company':company,
-            'Location':location,
-            'Description':description,
-            'Salary':hasSalary,
-            'Date':date
-        }
+        myData = (
+            title['title'].strip(),
+            company,
+            location,
+            description,
+            hasSalary,
+            date
+            )
 
-        allJobs.append(myJson)
+        allJobs.append(myData)
         
     return allJobs
 
 ## Retrieve and extract data
-def getJobs():
-    for x in range(1):
+def insertData():
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database="studentnet"
+    )
+
+    mycursor = mydb.cursor()
+
+    sql = "TRUNCATE TABLE indeedjobs"
+    mycursor.execute(sql)
+
+    mydb.commit()
+
+    print("Old data cleared...")
+
+    for x in range(2):
         c = extract(x + 1)
         jobInfo = getJobInfo(c)
-    return jobInfo
 
-## Writes data into json file
-def writeJson(data, filename="./web/resources/indeedJobs.json"):
-    with open (filename, "w") as f:
-        f.write(json.dumps(data, indent=4))
+        sql = "INSERT INTO indeedjobs (title, company, location, jobDescription, salary, dateString) VALUES (%s, %s, %s, %s, %s, %s)"
+        mycursor.executemany(sql, jobInfo)
 
-## In order to update the jobs, we have to clear the old list
-def clearJson(filename="./web/resources/indeedJobs.json"):
-    with open("./web/resources/indeedJobs.json", "r") as json_file:
-        data = json.load(json_file)
-        n = 0
-        if (data == []):
-            pass
-        else:
-            for i in range(len(data)):
-                i = 0
-                if (data[i]["Id"] == (n + 1)):
-                    data.pop(i)
-                    n = n + 1
-        writeJson(data)
-        json_file.close()
-        
-clearJson() ## To clear objects so we can update
+        mydb.commit()
 
-with open("./web/resources/indeedJobs.json", "r") as json_file: ## Read in data and append to list
-    data = json.load(json_file)
-    y = getJobs()
-    for job in y:
-        data.append(job)
-    json_file.close()
+        print(mycursor.rowcount, "jobs was inserted.")
 
-writeJson(data) ## Dump list into json file
+insertData()
+
+
 
 
