@@ -5,13 +5,9 @@ const handler = nextConnect()
 
     .get(async (req, res) => {
         try {
-            var jobArray = []
             var [results] = await allJobs();
             if (results.length > 0) {
-                results.forEach(job => {
-                        jobArray.push(job)
-                })
-                res.json(jobArray)
+                res.json(results)
             }
             else {
                 res.status(500).json({error: "No jobs found"});
