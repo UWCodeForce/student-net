@@ -31,7 +31,7 @@ const auth = session({
   store: sessionStore,
 });
 
-const getUserById = (id) => {
+const getUserById = async (id) => {
   var results = await query(
     `
     SELECT email FROM users WHERE id = ?
