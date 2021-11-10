@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Box,
   Flex,
@@ -44,9 +45,9 @@ const NavLink = ({ children }, { children: ReactNode }) => (
 );
 
 function NavBar() {
+  const Router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoggedIn, setIsLoggedIn] = useState(false); //fetch this state from the state storage
-
 
   return (
     <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -71,7 +72,9 @@ function NavBar() {
             ))}
           </HStack>
         </HStack>
-        <Flex alignItems={"center"}> {/* If the user is logged in display the avatar menu else display the signin & signout button*/}
+        <Flex alignItems={"center"}>
+          {" "}
+          {/* If the user is logged in display the avatar menu else display the signin & signout button*/}
           {isLoggedIn ? (
             <Menu>
               <MenuButton
@@ -103,12 +106,16 @@ function NavBar() {
                 colorScheme="teal"
                 variant="solid"
                 onClick={() => {
-                  setIsLoggedIn(true);
+                  Router.push("/signin");
                 }}
               >
                 Sign In
               </Button>
-              <Button colorScheme="teal" variant="outline">
+              <Button
+                colorScheme="teal"
+                variant="outline"
+                onClick={() => Router.push("/signup")}
+              >
                 Sign Up
               </Button>
             </Stack>
