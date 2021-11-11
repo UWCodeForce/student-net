@@ -61,6 +61,7 @@ export default function SignIn() {
         align="center"
         justify="center"
         spacing="1rem"
+        color="black"
       >
         <Heading>Sign In</Heading>
 
@@ -108,6 +109,7 @@ export default function SignIn() {
                   label="Email"
                   error={errors.email}
                   touched={touched.email}
+                  bg="white"
                 />
                 <CustomInputField
                   name="password"
@@ -115,6 +117,7 @@ export default function SignIn() {
                   label="Password"
                   error={errors.password}
                   touched={touched.password}
+                  bg="white"
                 />
                 <Box w="100%" align="center">
                   <Button
