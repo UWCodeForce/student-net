@@ -14,10 +14,7 @@ const handler = nextConnect().post(async (req, res) => {
               SELECT password, id FROM users WHERE email = ?
             `,
       [email]
-    );
-
-    console.log(results);
-
+    );    
     if (results.length < 1) res.status(401).json({ error: "Email not found" });
 
     const { password: hashedPW, id } = results[0];
