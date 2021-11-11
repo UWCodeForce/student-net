@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "nodemon -w server.js server.js",
+    "test": "nodemon --legacy-watch -w server.js server.js",
+		"prettier": "npx prettier --write .",
     "lint": "next lint"
   },
   "repository": {
@@ -48,8 +49,11 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "nodemon": "^2.0.13",
-    "eslint-config-next": "11.1.2"
+    "eslint": "^7.32.0",
+		"eslint-config-next": "^11.1.2",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"nodemon": "^2.0.13",
+		"prettier": "^2.4.1"
   }
 }
