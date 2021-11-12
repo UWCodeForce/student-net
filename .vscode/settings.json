@@ -1,4 +1,4 @@
 {
   "eslint.workingDirectories": ["./web"],
-  "editor.formatOnSave": false
+  "editor.formatOnSave": true
 }
