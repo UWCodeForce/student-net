@@ -1,7 +1,6 @@
 # Student Net
 
-Some description goes here.
-
+A student net for students of The University of Winnipeg.
 ## Setup
 
 ### Prerequisites
