@@ -1,59 +1,59 @@
 {
-  "name": "student-net",
-  "version": "0.1.0",
-  "private": true,
-  "description": "A sample project setup for Student Net on the NextJS + MySQL stack.",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "test": "nodemon --legacy-watch -w server.js server.js",
+	"name": "student-net",
+	"version": "0.1.0",
+	"private": true,
+	"description": "A sample project setup for Student Net on the NextJS + MySQL stack.",
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"test": "nodemon --legacy-watch -w server.js server.js",
 		"prettier": "npx prettier --write .",
-    "lint": "next lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/UWCodeForce/student-net.git"
-  },
-  "keywords": [
-    "Student",
-    "Net",
-    "NextJS",
-    "UWinnipeg"
-  ],
-  "author": "UW Code Force <admin@uwcodeforce.ca>",
-  "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://github.com/UWCodeForce/student-net#readme",
-  "bugs": {
-    "url": "https://github.com/UWCodeForce/student-net/issues"
-  },
-  "dependencies": {
-    "@chakra-ui/gatsby-plugin": "^2.0.1",
-    "@chakra-ui/react": "^1.6.10",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
-    "bcrypt": "^5.0.1",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "express-mysql-session": "^2.1.7",
-    "express-session": "^1.17.2",
-    "formik": "^2.2.9",
-    "framer-motion": "^4.1.17",
-    "mysql2": "^2.3.0",
-    "next": "11.1.2",
-    "next-connect": "^0.10.2",
-    "passport": "^0.5.0",
-    "passport-local": "^1.0.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "yup": "^0.32.11"
-  },
-  "devDependencies": {
-    "eslint": "^7.32.0",
+		"lint": "next lint"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/UWCodeForce/student-net.git"
+	},
+	"keywords": [
+		"Student",
+		"Net",
+		"NextJS",
+		"UWinnipeg"
+	],
+	"author": "UW Code Force <admin@uwcodeforce.ca>",
+	"license": "SEE LICENSE IN LICENSE",
+	"homepage": "https://github.com/UWCodeForce/student-net#readme",
+	"bugs": {
+		"url": "https://github.com/UWCodeForce/student-net/issues"
+	},
+	"dependencies": {
+		"@chakra-ui/gatsby-plugin": "^2.0.1",
+		"@chakra-ui/react": "^1.6.10",
+		"@emotion/react": "^11.5.0",
+		"@emotion/styled": "^11.3.0",
+		"bcrypt": "^5.0.1",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"express-mysql-session": "^2.1.7",
+		"express-session": "^1.17.2",
+		"formik": "^2.2.9",
+		"framer-motion": "^4.1.17",
+		"mysql2": "^2.3.0",
+		"next": "11.1.2",
+		"next-connect": "^0.10.2",
+		"passport": "^0.5.0",
+		"passport-local": "^1.0.0",
+		"react": "17.0.2",
+		"react-dom": "17.0.2",
+		"yup": "^0.32.11"
+	},
+	"devDependencies": {
+		"eslint": "^7.32.0",
 		"eslint-config-next": "^11.1.2",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"nodemon": "^2.0.13",
 		"prettier": "^2.4.1"
-  }
+	}
 }

@@ -1,42 +1,43 @@
 /* css variables*/
 :root {
-  --primary-color: #fefae0;
-  --primary-color-light: #8E7474;
-  --accent-color: #FE6A6B;
-  --accent-color-light: #FFE4E4;
-  --accent-color-dark: #B94B4C;
-  --white-color: #FAFBFC;
-  --light-gray-color: #C6CBD1;
-  --medium-gray-color: #959DA5;
-  --dark-gray-color: #444D56; 
-  --bg-color: #F8F8FA;
-  --nav-color: #495057;
-  --code-bg-color: #F0E8E8;
+	--primary-color: #fefae0;
+	--primary-color-light: #8e7474;
+	--accent-color: #fe6a6b;
+	--accent-color-light: #ffe4e4;
+	--accent-color-dark: #b94b4c;
+	--white-color: #fafbfc;
+	--light-gray-color: #c6cbd1;
+	--medium-gray-color: #959da5;
+	--dark-gray-color: #444d56;
+	--bg-color: #f8f8fa;
+	--nav-color: #495057;
+	--code-bg-color: #f0e8e8;
 }
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
-  background-color: #ced4da;
+	padding: 0;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	background-color: #ced4da;
 }
 
 nav {
-  background-color: var(--nav-color);
+	background-color: var(--nav-color);
 }
 
-a, a:hover {
-  text-decoration: none;
-  color: var(--primary-color);
+a,
+a:hover {
+	text-decoration: none;
+	color: var(--primary-color);
 }
 
 /* menu */
 nav {
-  display: grid;
-  grid-template-columns: 175px auto;
+	display: grid;
+	grid-template-columns: 175px auto;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }

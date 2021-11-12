@@ -1,21 +1,23 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import styles from '../../styles/auth.module.css'
+import React from 'react';
+import { useRouter } from 'next/router';
+import styles from '../../styles/auth.module.css';
 
 export default function SignOut({ data }) {
-    const Router = useRouter()
-    
-    async function onSignout(e) {
-        e.preventDefault()
+	const Router = useRouter();
 
-        await fetch('./api/auth/signout', { method: 'POST' })
-        Router.reload()
-    }
+	async function onSignout(e) {
+		e.preventDefault();
 
-    return (
-        <div className={[styles.auth, "noselect"].join(' ')}>
-            <h1>You are signed in as {data.email}</h1>
-            <button onClick={onSignout} className={styles.submit}>Sign Out</button>
-        </div>
-    )
+		await fetch('./api/auth/signout', { method: 'POST' });
+		Router.reload();
+	}
+
+	return (
+		<div className={[styles.auth, 'noselect'].join(' ')}>
+			<h1>You are signed in as {data.email}</h1>
+			<button onClick={onSignout} className={styles.submit}>
+				Sign Out
+			</button>
+		</div>
+	);
 }
