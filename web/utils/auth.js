@@ -40,7 +40,7 @@ const getUserById = async (id) => {
 	  `,
 			[id]
 		);
-		if(results.length > 0) {
+		if (results.length > 0) {
 			let user = results[0];
 			return user;
 		} else {
@@ -51,14 +51,15 @@ const getUserById = async (id) => {
 	}
 };
 
-const getUserByEmailAndPass = async (email, password, callback) => { //Can't be async for passport
+const getUserByEmailAndPass = async (email, password, callback) => {
+	//Can't be async for passport
 	try {
-		var [results] = await query("SELECT * FROM users WHERE email=?", [email]);
-		if(results.length > 0) {
+		var [results] = await query('SELECT * FROM users WHERE email=?', [email]);
+		if (results.length > 0) {
 			let user = results[0];
 			bcrypt.compare(password, user.password, (err, same) => {
-				if(err) throw err;
-				if(same) {
+				if (err) throw err;
+				if (same) {
 					callback(user);
 				} else {
 					callback(false);
@@ -70,6 +71,6 @@ const getUserByEmailAndPass = async (email, password, callback) => { //Can't be 
 	} catch (e) {
 		throw e;
 	}
-}
+};
 
 module.exports = { auth, getUserById, getUserByEmailAndPass };

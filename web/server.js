@@ -9,20 +9,23 @@ const handleNextRequest = app.getRequestHandler(); //We need to get the next.js 
 const { pool } = require('./utils/query');
 const { auth, getUserById, getUserByEmailAndPass } = require('./utils/auth');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 
-
-passport.use(new LocalStrategy({usernameField: "email", passwordField: "password"}, function verify(username, password, done) {
-	getUserByEmailAndPass(username, password, (user) => {
-		if(user) {
-			return done(null, user);
-		} else {
-			return done(null, false);
-		}
-	});
-	
-}));
-
+passport.use(
+	new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, function verify(
+		username,
+		password,
+		done
+	) {
+		getUserByEmailAndPass(username, password, (user) => {
+			if (user) {
+				return done(null, user);
+			} else {
+				return done(null, false);
+			}
+		});
+	})
+);
 
 passport.serializeUser(function (user, done) {
 	done(null, user.id);
@@ -42,19 +45,19 @@ app.prepare().then(() => {
 
 	//if we want to manually handle any routes or add middleware, do it here
 	server.use(express.json());
-	server.use(express.urlencoded({extended: true}));
+	server.use(express.urlencoded({ extended: true }));
 	server.use(auth);
 	server.use(passport.initialize());
 	server.use(passport.session());
 
 	require('./utils/databasemigrations')(pool); //Will automatically look for new SQL scripts and execute them in order
-	server.post("/api/auth/signin", (req, res, next) => {
-		passport.authenticate("local", (err, user, info) => {
-			if(err) return next(err);
-			if(!user) return res.status(500).json({error: "Invalid login"});
+	server.post('/api/auth/signin', (req, res, next) => {
+		passport.authenticate('local', (err, user, info) => {
+			if (err) return next(err);
+			if (!user) return res.status(500).json({ error: 'Invalid login' });
 			req.logIn(user, (err2) => {
-				if(err2) throw err2;
-				return res.status(200).json({message: "Login Success!"});
+				if (err2) throw err2;
+				return res.status(200).json({ message: 'Login Success!' });
 			});
 		})(req, res, next);
 	});
