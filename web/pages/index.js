@@ -6,7 +6,6 @@ import NavBar from '../components/Navbar';
 export default function withAction() {
 	return (
 		<>
-			<NavBar />
 			<SimpleGrid columns={2} spacing={10} mt="1%" pl="10%" pr="10%" mb="5%">
 				<Box align="left" w="100%">
 					<Heading color="blue" mb="1%">

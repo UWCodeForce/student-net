@@ -1,5 +1,6 @@
 const { pool, query } = require('./query');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 const MySQLStore = require('express-mysql-session')(session);
 
 const sessionStore = new MySQLStore(
@@ -26,24 +27,49 @@ const auth = session({
 	cookie: {
 		httpOnly: true,
 		secure: false,
-		maxAge: 300,
+		maxAge: 24 * 60 * 60 * 1000,
 	},
 	store: sessionStore,
 });
 
 const getUserById = async (id) => {
-	var results = await query(
-		`
-    SELECT email FROM users WHERE id = ?
-  `,
-		[id]
-	);
-
-	if (results[0].length < 1) return null;
-	const { email } = JSON.parse(JSON.stringify(results[0][0]));
-	const user = { id: id, email: email };
-
-	return user;
+	try {
+		var [results] = await query(
+			`
+		SELECT * FROM users WHERE id = ?
+	  `,
+			[id]
+		);
+		if(results.length > 0) {
+			let user = results[0];
+			return user;
+		} else {
+			return null;
+		}
+	} catch (e) {
+		throw e;
+	}
 };
 
-module.exports = { auth, getUserById };
+const getUserByEmailAndPass = async (email, password, callback) => { //Can't be async for passport
+	try {
+		var [results] = await query("SELECT * FROM users WHERE email=?", [email]);
+		if(results.length > 0) {
+			let user = results[0];
+			bcrypt.compare(password, user.password, (err, same) => {
+				if(err) throw err;
+				if(same) {
+					callback(user);
+				} else {
+					callback(false);
+				}
+			});
+		} else {
+			callback(null);
+		}
+	} catch (e) {
+		throw e;
+	}
+}
+
+module.exports = { auth, getUserById, getUserByEmailAndPass };
