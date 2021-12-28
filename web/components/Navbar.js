@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 import {
 	Box,
 	Flex,
@@ -20,7 +21,7 @@ import {
 import HamburgerIcon from '@chakra-ui/icon';
 import CloseIcon from '@chakra-ui/icon';
 
-const Links = ['Home', 'Forum', 'Courses', 'Jobs', 'Housing', 'RateMyProfessor'];
+const Links = ['Home', 'Forum', 'Courses', 'Jobs', 'Housing', 'RateMyProfessor', 'Contact'];
 
 const NavLink = ({ children }, { children: ReactNode }) => (
 	<Link
