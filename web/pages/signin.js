@@ -44,6 +44,11 @@ export default function SignIn() {
 		});
 
 		res = await res.json();
+		if (res.message == 'Login Success!') {
+			setTimeout(() => {
+				Router.push('/profile');
+			}, 1000);
+		}
 		setResponse(res);
 	}
 
