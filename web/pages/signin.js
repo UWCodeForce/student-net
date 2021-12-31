@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Formik, Form } from 'formik';
-import { useEffect } from 'react';
 import * as Yup from 'yup';
 import CustomInputField from '../components/auth/CustomInputField';
 import {
@@ -45,10 +44,10 @@ export default function SignIn() {
 		});
 
 		res = await res.json();
-		if (res.message == "Login Success!") {
+		if (res.message == 'Login Success!') {
 			setTimeout(() => {
 				Router.push('/profile');
-			}, 1000)
+			}, 1000);
 		}
 		setResponse(res);
 	}
