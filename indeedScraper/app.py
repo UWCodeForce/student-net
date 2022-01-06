@@ -33,22 +33,28 @@ def getJobInfo(soup):
         description = jobs.find('div', class_ = ('job-snippet')).text.strip()
         salary = jobs.find('span', class_ = ('salary-snippet'))
         date = jobs.find('span', class_ = ('date')).text.strip()
+        link = jobs['href']
+
 
         if (salary == None):
             hasSalary = None
         else:
             hasSalary = salary.text
-      ## id = id + 1
+
+        link = 'https://ca.indeed.com' + link
+
         myData = (
             title['title'].strip(),
             company,
             location,
             description,
             hasSalary,
-            date
+            date,
+            link
             )
 
         allJobs.append(myData)
+        print(allJobs)
         
     return allJobs
 
@@ -74,7 +80,7 @@ def insertData():
         c = extract(x + 1)
         jobInfo = getJobInfo(c)
 
-        sql = "INSERT INTO indeedjobs (title, company, location, jobDescription, salary, dateString) VALUES (%s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO indeedjobs (title, company, location, jobDescription, salary, dateString, link) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         mycursor.executemany(sql, jobInfo)
 
         mydb.commit()
