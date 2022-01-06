@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
 	password: Yup.string().required('Required'),
 });
 
-export default function SignIn() {
+export default function SignIn({ user }) {
 	const Router = useRouter();
 	const [response, setResponse] = useState();
 
@@ -43,8 +43,7 @@ export default function SignIn() {
 			body: JSON.stringify(body),
 		});
 
-		res = await res.json();
-		if (res.message == 'Login Success!') {
+		if (res.status === 200) {
 			setTimeout(() => {
 				Router.push('/profile');
 			}, 1000);
@@ -52,7 +51,24 @@ export default function SignIn() {
 		setResponse(res);
 	}
 
-	return (
+	if (user) return (
+		<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
+			<VStack
+				className="noselect"
+				background="gray.100"
+				p="3rem"
+				align="center"
+				justify="center"
+				spacing="1rem"
+				color="black"
+			>
+				<Heading>Signed in as {user.email}</Heading>
+				<Button colorScheme="red">Sign Out</Button>
+			</VStack>
+		</Flex>
+	)
+
+	else return (
 		<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
 			<VStack
 				className="noselect"
@@ -151,4 +167,13 @@ export default function SignIn() {
 			</VStack>
 		</Flex>
 	);
+}
+
+export async function getServerSideProps({ req }) {
+	if (req.headers.cookie === null) return { props: { user: null } }
+	const user = await req.user
+	if (!user) return { props: { user: null } }
+	delete user.password
+	delete user.createTime
+	return { props: { user: user } }
 }
