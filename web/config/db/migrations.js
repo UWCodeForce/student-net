@@ -39,6 +39,16 @@ const migrations = [
 		scriptDate: '2021-10-30',
 		sql: 'ALTER TABLE indeedjobs MODIFY COLUMN title VARCHAR(100), MODIFY COLUMN company VARCHAR(100);',
 	},
+	{
+		scriptName: 'alter-indeed-table',
+		scriptDate: '2021-12-29',
+		sql: 'ALTER TABLE indeedjobs ADD link VARCHAR(500);',
+	},
+	{
+		scriptName: 'modify-link-column',
+		scriptDate: '2021-12-29',
+		sql: 'ALTER TABLE indeedjobs MODIFY COLUMN link VARCHAR(6000);',
+	},
 ];
 
 module.exports = migrations;
