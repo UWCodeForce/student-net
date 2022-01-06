@@ -51,129 +51,130 @@ export default function SignIn({ user }) {
 		setResponse(res);
 	}
 
-	if (user) return (
-		<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
-			<VStack
-				className="noselect"
-				background="gray.100"
-				p="3rem"
-				align="center"
-				justify="center"
-				spacing="1rem"
-				color="black"
-			>
-				<Heading>Signed in as {user.email}</Heading>
-				<Button colorScheme="red">Sign Out</Button>
-			</VStack>
-		</Flex>
-	)
-
-	else return (
-		<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
-			<VStack
-				className="noselect"
-				background="gray.100"
-				p="3rem"
-				align="center"
-				justify="center"
-				spacing="1rem"
-				color="black"
-			>
-				<Heading>Sign In</Heading>
-
-				{response && response.message && (
-					<Alert
-						status="success"
-						rounded="1.5rem"
-						p="0.75rem 1rem"
-						justify="center"
-						align="center"
-						width="fit-content"
-						maxWidth="100%"
-					>
-						<AlertIcon />
-						<AlertDescription>{response.message}</AlertDescription>
-					</Alert>
-				)}
-
-				{response && response.error && (
-					<Alert
-						status="error"
-						rounded="1rem"
-						justify="center"
-						align="center"
-						width="fit-content"
-					>
-						<AlertIcon />
-						<AlertDescription>{response.error}</AlertDescription>
-					</Alert>
-				)}
-
-				<Formik
-					initialValues={initialValues}
-					validationSchema={validationSchema}
-					onSubmit={async (values, actions) => {
-						await onSignIn(values);
-						actions.setSubmitting(false);
-					}}
+	if (user)
+		return (
+			<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
+				<VStack
+					className="noselect"
+					background="gray.100"
+					p="3rem"
+					align="center"
+					justify="center"
+					spacing="1rem"
+					color="black"
 				>
-					{({ errors, touched, isSubmitting, isValid }) => (
-						<Form>
-							<VStack justify="center" align="flex-start" spacing="0.5rem">
-								<CustomInputField
-									name="email"
-									label="Email"
-									error={errors.email}
-									touched={touched.email}
-									bg="white"
-								/>
-								<CustomInputField
-									name="password"
-									type="password"
-									label="Password"
-									error={errors.password}
-									touched={touched.password}
-									bg="white"
-								/>
-								<Box w="100%" align="center">
-									<Button
-										disabled={!isValid}
-										isLoading={isSubmitting}
-										mt="0.5rem"
-										colorScheme="red"
-										type="submit"
-									>
-										Sign In
-									</Button>
-								</Box>
-							</VStack>
-						</Form>
-					)}
-				</Formik>
+					<Heading>Signed in as {user.email}</Heading>
+					<Button colorScheme="red">Sign Out</Button>
+				</VStack>
+			</Flex>
+		);
+	else
+		return (
+			<Flex height="100vh" align="center" justify="center" backgroundColor="gray.700">
+				<VStack
+					className="noselect"
+					background="gray.100"
+					p="3rem"
+					align="center"
+					justify="center"
+					spacing="1rem"
+					color="black"
+				>
+					<Heading>Sign In</Heading>
 
-				<Flex justify="space-between" width="100%" direction="row">
-					<p>
-						<Link
-							style={{ textDecoration: 'inherit' }}
-							onClick={() => Router.push('/signup')}
+					{response && response.message && (
+						<Alert
+							status="success"
+							rounded="1.5rem"
+							p="0.75rem 1rem"
+							justify="center"
+							align="center"
+							width="fit-content"
+							maxWidth="100%"
 						>
-							Sign Up
-						</Link>
-					</p>
-					<p>
-						<Link style={{ textDecoration: 'inherit' }}>Forgot Password</Link>
-					</p>
-				</Flex>
-			</VStack>
-		</Flex>
-	);
+							<AlertIcon />
+							<AlertDescription>{response.message}</AlertDescription>
+						</Alert>
+					)}
+
+					{response && response.error && (
+						<Alert
+							status="error"
+							rounded="1rem"
+							justify="center"
+							align="center"
+							width="fit-content"
+						>
+							<AlertIcon />
+							<AlertDescription>{response.error}</AlertDescription>
+						</Alert>
+					)}
+
+					<Formik
+						initialValues={initialValues}
+						validationSchema={validationSchema}
+						onSubmit={async (values, actions) => {
+							await onSignIn(values);
+							actions.setSubmitting(false);
+						}}
+					>
+						{({ errors, touched, isSubmitting, isValid }) => (
+							<Form>
+								<VStack justify="center" align="flex-start" spacing="0.5rem">
+									<CustomInputField
+										name="email"
+										label="Email"
+										error={errors.email}
+										touched={touched.email}
+										bg="white"
+									/>
+									<CustomInputField
+										name="password"
+										type="password"
+										label="Password"
+										error={errors.password}
+										touched={touched.password}
+										bg="white"
+									/>
+									<Box w="100%" align="center">
+										<Button
+											disabled={!isValid}
+											isLoading={isSubmitting}
+											mt="0.5rem"
+											colorScheme="red"
+											type="submit"
+										>
+											Sign In
+										</Button>
+									</Box>
+								</VStack>
+							</Form>
+						)}
+					</Formik>
+
+					<Flex justify="space-between" width="100%" direction="row">
+						<p>
+							<Link
+								style={{ textDecoration: 'inherit' }}
+								onClick={() => Router.push('/signup')}
+							>
+								Sign Up
+							</Link>
+						</p>
+						<p>
+							<Link style={{ textDecoration: 'inherit' }}>Forgot Password</Link>
+						</p>
+					</Flex>
+				</VStack>
+			</Flex>
+		);
 }
 
 export async function getServerSideProps({ req }) {
-	if (req.headers.cookie === null) return { props: { user: null } }
-	const user = await req.user
-	if (!user) return { props: { user: null } }
-	delete user.password
-	delete user.createTime
-	return { props: { user: user } }
+	if (req.headers.cookie === null) return { props: { user: null } };
+	const user = await req.user;
+	if (!user) return { props: { user: null } };
+	delete user.password;
+	delete user.createTime;
+	return { props: { user: user } };
 }
