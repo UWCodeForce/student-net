@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Box, Heading } from '@chakra-ui/react';
 import Posts from '../components/Posts';
 import Pagination from '../components/Pagination';
@@ -13,7 +12,8 @@ const App = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
-            const res = await axios.get('http://localhost:3000/api/jobs');
+            const res = await fetch('http://localhost:3000/api/jobs')
+                .then(response => response.json());
             setPosts(res.data);
             setLoading(false);
         }
