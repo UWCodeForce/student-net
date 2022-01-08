@@ -55,9 +55,13 @@ function Content(props) {
 			>
 				<Link href={props.link} fontSize="36px" fontWeight="500">
 					{props.title}
-				</Link><Divider /><br />
+				</Link>
+				<Divider />
+				<br />
 				<Center>
-					<Text width="80%" fontSize="20px"><p dangerouslySetInnerHTML={{ __html: props.fullDesc }} /></Text>
+					<Text width="80%" fontSize="20px">
+						<p dangerouslySetInnerHTML={{ __html: props.fullDesc }} />
+					</Text>
 				</Center>
 			</AccordionPanel>
 		</AccordionItem>
