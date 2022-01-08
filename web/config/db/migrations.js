@@ -49,6 +49,11 @@ const migrations = [
 		scriptDate: '2021-12-29',
 		sql: 'ALTER TABLE indeedjobs MODIFY COLUMN link VARCHAR(6000);',
 	},
+	{
+		scriptName: 'add-fullDesc-column',
+		scriptDate: '2022-01-08',
+		sql: 'ALTER TABLE indeedjobs ADD fullDesc TEXT NOT NULL;',
+	},
 ];
 
 module.exports = migrations;
