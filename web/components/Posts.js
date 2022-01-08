@@ -6,6 +6,8 @@ import {
 	List,
 	ListItem,
 	Text,
+	Divider,
+	Center,
 	Accordion,
 	AccordionButton,
 	AccordionPanel,
@@ -20,7 +22,6 @@ function Content(props) {
 				p="6"
 				rounded="md"
 				borderRadius="10px"
-				backgroundColor="white"
 			>
 				<List>
 					<ListItem key={props.id}>
@@ -42,15 +43,22 @@ function Content(props) {
 			</AccordionButton>
 			<AccordionPanel
 				position="absolute"
-				left="1200"
+				left="925"
 				height="70%"
 				top="275"
 				boxShadow="0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%)"
 				p="6"
 				rounded="md"
 				borderRadius="10px"
+				overflow="auto"
+				width="50%"
 			>
-				<Text>{props.jobDescription}</Text>
+				<Link href={props.link} fontSize="36px" fontWeight="500">
+					{props.title}
+				</Link><Divider /><br />
+				<Center>
+					<Text width="80%" fontSize="20px"><p dangerouslySetInnerHTML={{ __html: props.fullDesc }} /></Text>
+				</Center>
 			</AccordionPanel>
 		</AccordionItem>
 	);
@@ -72,6 +80,7 @@ const Posts = ({ posts, loading }) => {
 						location={post.location}
 						jobDescription={post.jobDescription}
 						dateString={post.dateString}
+						fullDesc={post.fullDesc}
 					/>
 				))}
 				;

@@ -15,7 +15,7 @@ const App = () => {
 			const res = await fetch('http://localhost:3000/api/jobs').then((response) =>
 				response.json()
 			);
-			setPosts(res.data);
+			setPosts(res);
 			setLoading(false);
 		};
 
