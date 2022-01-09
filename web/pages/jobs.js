@@ -3,7 +3,7 @@ import { Box, Heading } from '@chakra-ui/react';
 import Posts from '../components/Posts';
 import Pagination from '../components/Pagination';
 
-const App = () => {
+const Jobs = () => {
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -12,9 +12,7 @@ const App = () => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			setLoading(true);
-			const res = await fetch('http://localhost:3000/api/jobs').then((response) =>
-				response.json()
-			);
+			const res = await (await fetch('/api/jobs')).json();
 			setPosts(res);
 			setLoading(false);
 		};
@@ -42,4 +40,4 @@ const App = () => {
 	);
 };
 
-export default App;
+export default Jobs;
