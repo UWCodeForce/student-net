@@ -1,14 +1,20 @@
 import { ReactNode } from 'react';
 import { Box, SimpleGrid, Heading, Text } from '@chakra-ui/react';
+import Image from 'next/image';
 
-import NavBar from '../components/Navbar';
+import Speech from '../assets/speech.svg';
+import Students from '../assets/students.svg';
+import Clipboard from '../assets/clipboard.svg';
+import House from '../assets/house.svg';
+import Job from '../assets/job.svg';
+import Professor from '../assets/professor.svg';
 
-export default function withAction() {
+export default function index() {
 	return (
 		<>
 			<SimpleGrid columns={2} spacing={10} mt="1%" pl="10%" pr="10%" mb="5%">
 				<Box align="left" w="100%">
-					<Heading color="blue" mb="1%">
+					<Heading color="blue.400" mb="1%">
 						Welcome to Student Net.
 					</Heading>
 					<Text>
@@ -20,11 +26,15 @@ export default function withAction() {
 						luctus urna id, tincidunt tellus.
 					</Text>
 				</Box>
-				<Box></Box>
+				<Box align="center">
+					<Image src={Students} />
+				</Box>
 
-				<Box></Box>
+				<Box align="center">
+					<Image src={Speech} />
+				</Box>
 				<Box w="100%" pr="10%">
-					<Heading color="blue" mb="1%">
+					<Heading color="blue.400" mb="1%">
 						Forums
 					</Heading>
 					<Text>
@@ -41,7 +51,7 @@ export default function withAction() {
 				</Box>
 
 				<Box>
-					<Heading color="blue">Search for courses</Heading>
+					<Heading color="blue.400">Search for courses</Heading>
 					<Text>
 						Quisque id dictum quam. Maecenas rhoncus nisi nec pellentesque cursus. Proin
 						fermentum urna sem, vel sagittis enim viverra ultricies. Maecenas eget felis
@@ -55,12 +65,16 @@ export default function withAction() {
 						mollis non libero eget luctus.
 					</Text>
 				</Box>
-				<Box></Box>
+				<Box align="center">
+					<Image src={Clipboard} />
+				</Box>
 
-				<Box></Box>
+				<Box align="center">
+					<Image src={House} />
+				</Box>
 
 				<Box>
-					<Heading color="blue">Housing</Heading>
+					<Heading color="blue.400">Housing</Heading>
 					<Text>
 						Fusce a lorem ac tellus vestibulum pellentesque. Ut eu diam libero. Sed id
 						ipsum gravida, feugiat erat dignissim, rhoncus neque. Nulla facilisi. Aenean
@@ -75,7 +89,7 @@ export default function withAction() {
 				</Box>
 
 				<Box>
-					<Heading color="blue">Looking for a job?</Heading>
+					<Heading color="blue.400">Looking for a job?</Heading>
 					<Text>
 						Sed nec lorem tempor, elementum ligula nec, fermentum ante. Proin ut erat
 						turpis. Aenean ut quam id odio gravida rhoncus id et felis. Curabitur et
@@ -84,12 +98,16 @@ export default function withAction() {
 						fringilla lectus eget quam suscipit, a hendrerit diam blandit.
 					</Text>
 				</Box>
-				<Box></Box>
+				<Box align="center">
+					<Image src={Job} />
+				</Box>
 
-				<Box></Box>
+				<Box align="center">
+					<Image src={Professor} />
+				</Box>
 
 				<Box>
-					<Heading color="blue">Review professors</Heading>
+					<Heading color="blue.400">Review professors</Heading>
 					<Text>
 						Nunc aliquet, nulla nec rutrum finibus, felis dui lacinia justo, congue
 						luctus diam mauris varius ante. Sed tincidunt, velit in pharetra mollis, mi
