@@ -81,6 +81,7 @@ const Posts = ({ posts, loading }) => {
 						id={post.id}
 						link={post.link}
 						title={post.title}
+						company={post.company}
 						location={post.location}
 						jobDescription={post.jobDescription}
 						dateString={post.dateString}
