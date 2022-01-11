@@ -17,11 +17,20 @@ import {
 	useDisclosure,
 	useColorModeValue,
 	Stack,
+	Image,
 } from '@chakra-ui/react';
 import HamburgerIcon from '@chakra-ui/icon';
 import CloseIcon from '@chakra-ui/icon';
 
-const Links = ['Home', 'Forum', 'Courses', 'Jobs', 'Housing', 'RateMyProfessor', 'Contact'];
+const Links = [
+	{ name: 'Home', link: '/' },
+	{ name: 'Forum', link: '/forums' },
+	{ name: 'Courses', link: '/courses' },
+	{ name: 'Jobs', link: '/jobs' },
+	{ name: 'Housing', link: '/housing' },
+	{ name: 'RateMyProfessor', link: '/ratemyprof' },
+	{ name: 'Contact', link: '/contact' },
+];
 
 const NavLink = ({ children }, { children: ReactNode }) => (
 	<Link
@@ -54,7 +63,7 @@ function NavBar() {
 					onClick={isOpen ? onClose : onOpen}
 				/>
 				<HStack spacing={8} alignItems={'center'}>
-					<Box>Logo</Box>
+					<Image src="/codeforcelogo.png" boxSize="64px"></Image>
 					<HStack
 						as={'nav'}
 						spacing={4}
@@ -62,7 +71,9 @@ function NavBar() {
 						bgColor={'gray.100'}
 					>
 						{Links.map((link) => (
-							<Button key={link}>{link}</Button>
+							<Button key={link.name} onClick={() => Router.push(link.link)}>
+								{link.name}
+							</Button>
 						))}
 					</HStack>
 				</HStack>
