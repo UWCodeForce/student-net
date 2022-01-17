@@ -33,19 +33,36 @@ def getJobInfo(soup):
         description = jobs.find('div', class_ = ('job-snippet')).text.strip()
         salary = jobs.find('span', class_ = ('salary-snippet'))
         date = jobs.find('span', class_ = ('date')).text.strip()
+        link = jobs['href']
+
+        link = 'https://ca.indeed.com' + link
+
+        ## Extract full description of job
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Safari/537.36'}
+
+        # creating a request of the URL
+        r = requests.get(link, headers)
+        soup = BeautifulSoup(r.content, 'html.parser')
+
+        fullDesc = soup.find('div', id = ('jobDescriptionText'))
+
+        fullDescString = str(fullDesc)
+        fullDescString.split('<script>')
 
         if (salary == None):
             hasSalary = None
         else:
             hasSalary = salary.text
-      ## id = id + 1
+
         myData = (
             title['title'].strip(),
             company,
             location,
             description,
             hasSalary,
-            date
+            date,
+            link,
+            fullDescString
             )
 
         allJobs.append(myData)
@@ -74,7 +91,7 @@ def insertData():
         c = extract(x + 1)
         jobInfo = getJobInfo(c)
 
-        sql = "INSERT INTO indeedjobs (title, company, location, jobDescription, salary, dateString) VALUES (%s, %s, %s, %s, %s, %s)"
+        sql = "INSERT INTO indeedjobs (title, company, location, jobDescription, salary, dateString, link, fullDesc) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         mycursor.executemany(sql, jobInfo)
 
         mydb.commit()

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg3323" viewBox="0 0 134.25 105.06" version="1.0">
+  <path id="path11341" stroke-linejoin="round" d="m67.125 2l-65.125 44.125h130.25l-27.59-18.687v-23.469l-18.472-0.0002v10.937l-19.063-12.906z" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-width="4"/>
+  <path id="rect11344" stroke-linejoin="round" d="m21 52.031v50.969h91.62v-50.969h-91.62zm14.125 11.657h21.531v21.531h-21.531v-21.531zm38.156 6.437h22.157v32.625h-22.157v-32.625z" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-width="4.0894"/>
+  <path id="path11352" fill-rule="evenodd" d="m43.75 63.969v8.469h-9.25v4h9.25v9.093h4v-9.093h8.594v-4h-8.594v-8.469h-4z"/>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>House icon</dc:title>
+        <dc:date>2009-11-26T21:06:53</dc:date>
+        <dc:description>An image of house to be used for multiple purposes, e.g. as an symbol/icon for home.</dc:description>
+        <dc:source>http://openclipart.org/detail/28497/house-icon-by-purzen</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>purzen</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>back</rdf:li>
+            <rdf:li>building</rdf:li>
+            <rdf:li>cartoon</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>home</rdf:li>
+            <rdf:li>house</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>outline</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>silhouette</rdf:li>
+            <rdf:li>svg</rdf:li>
+            <rdf:li>symbol</rdf:li>
+            <rdf:li>web</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
