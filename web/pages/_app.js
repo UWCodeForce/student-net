@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import '../styles/globals.css';
 import '../styles/utilities.css';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -7,9 +7,9 @@ import NavBar from '../components/Navbar';
 import { UserContext } from '../utils/UserContext';
 
 export default function MyApp({ Component, pageProps }) {
-	const [user, setUser] = useState(null)
+	const [user, setUser] = useState(null);
 	return (
-		<UserContext.Provider value={{ user, setUser }} >
+		<UserContext.Provider value={{ user, setUser }}>
 			<ChakraProvider>
 				<NavBar />
 				<Component {...pageProps} />
@@ -18,4 +18,3 @@ export default function MyApp({ Component, pageProps }) {
 		</UserContext.Provider>
 	);
 }
-
