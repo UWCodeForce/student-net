@@ -74,7 +74,12 @@ const Posts = ({ posts, loading }) => {
 	}
 
 	if (posts.length < 1) {
-		return <Box><Divider /><Heading>No Jobs Found.</Heading></Box>;
+		return (
+			<Box>
+				<Divider />
+				<Heading>No Jobs Found.</Heading>
+			</Box>
+		);
 	}
 
 	return (
