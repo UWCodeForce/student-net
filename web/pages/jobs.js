@@ -22,7 +22,11 @@ const Jobs = () => {
 
 	const indexOfLastPost = currentPage * postsPerPage;
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	let currentPosts = [];
+
+	if (posts.length > 1) {
+		currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	}
 
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
