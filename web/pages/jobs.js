@@ -24,7 +24,7 @@ const Jobs = () => {
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
 	let currentPosts = [];
 
-	if (posts.length > 1) {
+	if (posts.length >= 1) {
 		currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 	}
 
