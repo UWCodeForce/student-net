@@ -28,7 +28,10 @@ const Links = [
 	{ name: 'Courses', link: '/courses' },
 	{ name: 'Jobs', link: '/jobs' },
 	{ name: 'Housing', link: '/housing' },
-	{ name: 'RateMyProfessor', link: '/ratemyprof' },
+	{
+		name: 'RateMyProfessor',
+		link: 'https://www.ratemyprofessors.com/campusRatings.jsp?sid=1494',
+	},
 	{ name: 'Contact', link: '/contact' },
 ];
 
