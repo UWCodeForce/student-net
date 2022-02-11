@@ -73,6 +73,15 @@ const Posts = ({ posts, loading }) => {
 		return <Heading>Loading...</Heading>;
 	}
 
+	if (posts.length < 1) {
+		return (
+			<Box>
+				<Divider />
+				<Heading>No Jobs Found.</Heading>
+			</Box>
+		);
+	}
+
 	return (
 		<Box>
 			<Accordion>
