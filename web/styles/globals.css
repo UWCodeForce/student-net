@@ -1,0 +1,44 @@
+/* css variables*/
+:root {
+	--primary-color: #fefae0;
+	--primary-color-light: #8e7474;
+	--accent-color: #fe6a6b;
+	--accent-color-light: #ffe4e4;
+	--accent-color-dark: #b94b4c;
+	--white-color: #fafbfc;
+	--light-gray-color: #c6cbd1;
+	--medium-gray-color: #959da5;
+	--dark-gray-color: #444d56;
+	--bg-color: #f8f8fa;
+	--nav-color: #495057;
+	--code-bg-color: #f0e8e8;
+}
+
+html,
+body {
+	/* height: 100%; */
+	padding: 0;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	background-color: #ced4da;
+}
+
+nav {
+	background-color: var(--nav-color);
+}
+
+a,
+a:hover {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+/* menu */
+nav {
+	display: grid;
+	grid-template-columns: 175px auto;
+}
+
+* {
+	box-sizing: border-box;
+}

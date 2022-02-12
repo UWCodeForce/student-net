@@ -1,9 +1,6 @@
 package-lock.json
 /node_modules
-<<<<<<< HEAD
 /.next
-=======
->>>>>>> 9492fff080bb4ddc1161bdf3b2a9d040d989027a
 .DS_Store
 .idea
 .vscode
