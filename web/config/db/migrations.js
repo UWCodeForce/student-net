@@ -54,6 +54,11 @@ const migrations = [
 		scriptDate: '2022-01-08',
 		sql: 'ALTER TABLE indeedjobs ADD fullDesc TEXT NOT NULL;',
 	},
+	{
+		scriptName: 'create-contacts-table',
+		scriptDate: '2022-02-08',
+		sql: 'CREATE TABLE contacts(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(128) NOT NULL, name VARCHAR(32) NOT NULL, description VARCHAR(1000) NOT NULL);',
+	},
 ];
 
 module.exports = migrations;
